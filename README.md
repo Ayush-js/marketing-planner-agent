@@ -1,0 +1,102 @@
+\# 🤖 Marketing Planner Agent
+
+
+
+An AI-powered Marketing Planning Assistant built with LangChain, CrewAI, and Groq (LLaMA 3.3).
+
+
+
+\## 🧠 What it does
+
+\- Takes a high-level marketing goal (e.g. "Analyze Competitor Ads")
+
+\- Breaks it down into actionable subtasks automatically
+
+\- Validates budget, team availability, and timeline for each task
+
+\- Generates a detailed execution schedule
+
+
+
+\## 🛠️ Tech Stack
+
+\- Python 3.11
+
+\- LangChain
+
+\- CrewAI
+
+\- Groq API (LLaMA 3.3) — Free
+
+\- python-dotenv
+
+
+
+\## 📁 Project Structure
+
+```
+
+marketing\_planner/
+
+├── agents/
+
+│   └── planner\_agent.py
+
+├── tools/
+
+│   ├── budget\_checker.py
+
+│   ├── team\_availability.py
+
+│   └── timeline\_validator.py
+
+├── utils/
+
+│   └── scheduler.py (coming soon)
+
+├── .env (not tracked)
+
+├── .gitignore
+
+├── test\_connection.py
+
+└── README.md
+
+```
+
+
+
+\## 🚀 Setup
+
+1\. Clone the repo
+
+2\. Install dependencies:
+
+```bash
+
+&#x20;  py -3.11 -m pip install langchain langchain-groq groq python-dotenv crewai
+
+```
+
+3\. Create a `.env` file and add your Groq API key:
+
+```
+
+&#x20;  GROQ\_API\_KEY=your\_key\_here
+
+```
+
+4\. Run the agent:
+
+```bash
+
+&#x20;  py -3.11 main.py
+
+```
+
+
+
+\## 🔑 Get a Free Groq API Key
+
+Sign up at https://console.groq.com — no credit card needed!
+
