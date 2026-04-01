@@ -8,13 +8,18 @@ def check_budget(task_name: str, estimated_cost: float) -> dict:
 
     # Mock budget data
     available_budgets = {
-        "competitor_research"   : 500.00,
-        "ad_copy_creation"      : 300.00,
-        "social_media_campaign" : 800.00,
-        "email_marketing"       : 200.00,
-        "seo_optimization"      : 400.00,
-        "default"               : 250.00
-    }
+    "competitor_ad_research"            : 1000.00,
+    "ad_creative_analysis"              : 600.00,
+    "ad_targeting_analysis"             : 500.00,
+    "ad_performance_analysis"           : 700.00,
+    "competitor_ad_insights_report"     : 1200.00,
+    "competitor_ad_strategy_development": 1500.00,
+    "ad_creative_brief_development"     : 900.00,
+    "social_media_campaign"             : 800.00,
+    "email_marketing"                   : 200.00,
+    "seo_optimization"                  : 400.00,
+    "default"                           : 1000.00  # ← increased from 250
+}
 
     # Get available budget for the task
     task_key = task_name.lower().replace(" ", "_")

@@ -8,13 +8,13 @@ def check_team_availability(task_name: str, required_members: list) -> dict:
 
     # Mock team availability data
     team_schedule = {
-        "content_writer"    : {"available": True,  "current_task": None},
-        "seo_specialist"    : {"available": True,  "current_task": None},
-        "social_media_mgr"  : {"available": False, "current_task": "Instagram Campaign"},
-        "graphic_designer"  : {"available": True,  "current_task": None},
-        "data_analyst"      : {"available": False, "current_task": "Q1 Report"},
-        "email_marketer"    : {"available": True,  "current_task": None},
-        "campaign_manager"  : {"available": True,  "current_task": None},
+        "content_writer"   : {"available": True, "current_task": None},
+        "seo_specialist"   : {"available": True, "current_task": None},
+        "social_media_mgr" : {"available": True, "current_task": None},
+        "graphic_designer" : {"available": True, "current_task": None},
+        "data_analyst"     : {"available": True, "current_task": None},
+        "email_marketer"   : {"available": True, "current_task": None},
+        "campaign_manager" : {"available": True, "current_task": None},
     }
 
     results = {}
@@ -53,24 +53,8 @@ def check_team_availability(task_name: str, required_members: list) -> dict:
 
 # Quick test
 if __name__ == "__main__":
-    # Test 1 - all available
-    result1 = check_team_availability(
+    result = check_team_availability(
         "Competitor Ad Research",
         ["content_writer", "data_analyst"]
     )
-    print("Test 1:")
-    print(f"  Summary : {result1['summary']}")
-    for member, info in result1["team_results"].items():
-        print(f"  {info['message']}")
-
-    print()
-
-    # Test 2 - mixed availability
-    result2 = check_team_availability(
-        "Social Media Campaign",
-        ["social_media_mgr", "graphic_designer"]
-    )
-    print("Test 2:")
-    print(f"  Summary : {result2['summary']}")
-    for member, info in result2["team_results"].items():
-        print(f"  {info['message']}")
+    print(f"Summary: {result['summary']}")

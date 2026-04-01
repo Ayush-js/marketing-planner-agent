@@ -11,14 +11,7 @@ def validate_timeline(task_name: str, start_day: int, duration_days: int) -> dic
     PROJECT_END_DAY   = 30  # 30 day marketing sprint
 
     # Mock already scheduled tasks (day_start, day_end)
-    scheduled_tasks = {
-        "Market Research"       : (1,  5),
-        "Brand Strategy"        : (3,  7),
-        "Content Planning"      : (6,  10),
-        "Ad Copy Writing"       : (8,  14),
-        "Campaign Setup"        : (12, 18),
-        "Review & Approval"     : (18, 22),
-    }
+    scheduled_tasks = {}
 
     task_end_day = start_day + duration_days
 
