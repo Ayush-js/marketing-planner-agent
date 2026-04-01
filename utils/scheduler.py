@@ -2,15 +2,16 @@
 
 from datetime import datetime, timedelta
 
-def generate_schedule(validated_tasks: list) -> dict:
+def generate_schedule(validated_tasks: list, verbose: bool = True) -> dict:
     """
     Takes validated tasks from the planner agent and generates
     a detailed execution schedule with dependencies handled.
     """
 
-    print("\n" + "="*50)
-    print("📅 GENERATING EXECUTION SCHEDULE")
-    print("="*50)
+    if verbose:
+        print("\n" + "="*50)
+        print("📅 GENERATING EXECUTION SCHEDULE")
+        print("="*50)
 
     # Separate ready and flagged tasks
     ready_tasks     = [t for t in validated_tasks if t["is_valid"]]
@@ -31,8 +32,9 @@ def generate_schedule(validated_tasks: list) -> dict:
     }
 
     # Process ready tasks
-    print(f"\n✅ SCHEDULED TASKS ({len(ready_tasks)})")
-    print("-" * 50)
+    if verbose:
+        print(f"\n✅ SCHEDULED TASKS ({len(ready_tasks)})")
+        print("-" * 50)
 
     total_budget = 0
     all_members  = set()
@@ -68,17 +70,19 @@ def generate_schedule(validated_tasks: list) -> dict:
         schedule["timeline"].append(entry)
 
         # Print formatted schedule entry
-        print(f"\n  [{i}] {task['task_name']}")
-        print(f"      📆 Day {start_day} → Day {end_day} ({task['duration_days']} days)")
-        print(f"      💰 Budget  : ${cost}")
-        print(f"      👥 Team    : {', '.join(members)}")
-        if entry["depends_on"]:
-            print(f"      🔗 Depends : {', '.join(entry['depends_on'])}")
+        if verbose:
+            print(f"\n  [{i}] {task['task_name']}")
+            print(f"      📆 Day {start_day} → Day {end_day} ({task['duration_days']} days)")
+            print(f"      💰 Budget  : ${cost}")
+            print(f"      👥 Team    : {', '.join(members)}")
+            if entry["depends_on"]:
+                print(f"      🔗 Depends : {', '.join(entry['depends_on'])}")
 
     # Process flagged tasks
     if flagged_tasks:
-        print(f"\n⚠️  FLAGGED TASKS ({len(flagged_tasks)}) — Need Attention")
-        print("-" * 50)
+        if verbose:
+            print(f"\n⚠️  FLAGGED TASKS ({len(flagged_tasks)}) — Need Attention")
+            print("-" * 50)
 
         for item in flagged_tasks:
             task = item["task"]
@@ -97,9 +101,10 @@ def generate_schedule(validated_tasks: list) -> dict:
             }
             schedule["flagged"].append(flagged_entry)
 
-            print(f"\n  ⚠️  {task['task_name']}")
-            for reason in reasons:
-                print(f"      ❌ {reason}")
+            if verbose:
+                print(f"\n  ⚠️  {task['task_name']}")
+                for reason in reasons:
+                    print(f"      ❌ {reason}")
 
     # Build summary
     schedule["summary"] = {
@@ -113,14 +118,15 @@ def generate_schedule(validated_tasks: list) -> dict:
     }
 
     # Print summary
-    print("\n" + "="*50)
-    print("📊 SCHEDULE SUMMARY")
-    print("="*50)
-    print(f"  ✅ Tasks Ready     : {len(ready_tasks)}/{len(validated_tasks)}")
-    print(f"  💰 Total Budget    : ${total_budget}")
-    print(f"  👥 Team Involved   : {', '.join(all_members)}")
-    print(f"  📆 Project Duration: {schedule['summary']['project_duration']} days")
-    print(f"  🕐 Generated At    : {schedule['generated_at']}")
+    if verbose:
+        print("\n" + "="*50)
+        print("📊 SCHEDULE SUMMARY")
+        print("="*50)
+        print(f"  ✅ Tasks Ready     : {len(ready_tasks)}/{len(validated_tasks)}")
+        print(f"  💰 Total Budget    : ${total_budget}")
+        print(f"  👥 Team Involved   : {', '.join(all_members)}")
+        print(f"  📆 Project Duration: {schedule['summary']['project_duration']} days")
+        print(f"  🕐 Generated At    : {schedule['generated_at']}")
 
     return schedule
 

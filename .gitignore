@@ -12,3 +12,7 @@ __pycache__/
 # Virtual environment
 venv/
 env/
+
+# Frontend
+web/node_modules/
+web/dist/

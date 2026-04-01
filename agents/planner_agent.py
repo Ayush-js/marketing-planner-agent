@@ -90,26 +90,29 @@ def parse_tasks(response_text: str) -> list:
     return tasks
 
 
-def validate_tasks(tasks: list) -> list:
+def validate_tasks(tasks: list, verbose: bool = True) -> list:
     """Run each task through all 3 mock tools and collect results."""
     validated = []
 
     for task in tasks:
-        print(f"\n🔍 Validating: {task['task_name']}")
+        if verbose:
+            print(f"\n🔍 Validating: {task['task_name']}")
 
         # Tool 1 — Budget check
         budget_result = check_budget(
             task["task_name"],
             task.get("estimated_cost", 0)
         )
-        print(f"   💰 {budget_result['message']}")
+        if verbose:
+            print(f"   💰 {budget_result['message']}")
 
         # Tool 2 — Team availability
         team_result = check_team_availability(
             task["task_name"],
             task.get("team_members", [])
         )
-        print(f"   👥 {team_result['summary']}")
+        if verbose:
+            print(f"   👥 {team_result['summary']}")
 
         # Tool 3 — Timeline validation
         timeline_result = validate_timeline(
@@ -117,7 +120,8 @@ def validate_tasks(tasks: list) -> list:
             task.get("start_day", 1),
             task.get("duration_days", 1)
         )
-        print(f"   📅 {timeline_result['message']}")
+        if verbose:
+            print(f"   📅 {timeline_result['message']}")
 
         # Overall status
         is_valid = (
@@ -138,11 +142,12 @@ def validate_tasks(tasks: list) -> list:
     return validated
 
 
-def run_planner_agent(goal: str) -> list:
+def run_planner_agent(goal: str, verbose: bool = True) -> list:
     """Main agent function — takes a goal and returns validated tasks."""
 
-    print(f"\n🎯 Goal received: {goal}")
-    print("🤖 Agent is thinking...\n")
+    if verbose:
+        print(f"\n🎯 Goal received: {goal}")
+        print("🤖 Agent is thinking...\n")
 
     # Call Groq LLM to decompose the goal
     response = client.chat.completions.create(
@@ -154,15 +159,17 @@ def run_planner_agent(goal: str) -> list:
     )
 
     raw_response = response.choices[0].message.content
-    print("📋 Tasks identified by Agent:")
-    print(raw_response)
-    print("\n" + "="*50)
+    if verbose:
+        print("📋 Tasks identified by Agent:")
+        print(raw_response)
+        print("\n" + "="*50)
 
     # Parse and validate tasks
     tasks = parse_tasks(raw_response)
-    print(f"\n✅ {len(tasks)} tasks parsed successfully")
+    if verbose:
+        print(f"\n✅ {len(tasks)} tasks parsed successfully")
 
-    validated_tasks = validate_tasks(tasks)
+    validated_tasks = validate_tasks(tasks, verbose=verbose)
 
     return validated_tasks
 

@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply min-h-screen antialiased;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(24 24 27 / 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(24 24 27 / 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.dark .bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-300;
+}
+
+html:not(.dark) .text-gradient {
+  @apply from-sky-600 via-cyan-600 to-emerald-600;
+}

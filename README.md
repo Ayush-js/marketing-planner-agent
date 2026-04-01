@@ -100,3 +100,28 @@ marketing\_planner/
 
 Sign up at https://console.groq.com — no credit card needed!
 
+## Web UI
+
+The `web/` app is a React + Vite + Tailwind interface styled like [SkyAgent](https://agent-magicui.vercel.app/) (marketing layout, dark/light toggle, planner section).
+
+**Production-style (API + built UI on one origin):**
+
+```bash
+py -3.11 -m pip install -r requirements.txt
+cd web
+npm install
+npm run build
+cd ..
+py -3.11 -m uvicorn api.app:app --host 127.0.0.1 --port 8000
+```
+
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000). The planner calls `POST /api/plan` (requires `GROQ_API_KEY` in `.env`).
+
+**Development (hot reload for the frontend):**
+
+```bash
+py -3.11 -m uvicorn api.app:app --reload --host 127.0.0.1 --port 8000
+```
+
+In another terminal: `cd web && npm run dev` and open [http://127.0.0.1:5173](http://127.0.0.1:5173) (Vite proxies `/api` to port 8000).
+
