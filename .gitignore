@@ -1,0 +1,14 @@
+# Environment variables - never upload this!
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code settings
+.vscode/
+
+# Virtual environment
+venv/
+env/
