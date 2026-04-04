@@ -11,7 +11,9 @@ import {
 } from "lucide-react";
 import type { PlanSchedule } from "../types";
 
-const API = "/api/plan";
+const API = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api/plan`
+  : "/api/plan";
 
 export function PlannerPanel() {
   const [goal, setGoal] = useState("");
