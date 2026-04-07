@@ -104,7 +104,7 @@ function PlannerPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
             Plan a campaign in one prompt
           </h1>
           <p className="mt-3 text-zinc-600 dark:text-zinc-400">
-            Describe your goal — get a schedule with costs, owners, and ordering.
+            Describe your goal get a schedule with costs, owners, and ordering.
           </p>
         </div>
         <PlannerPanel />
@@ -193,7 +193,7 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
               An assistant that turns a single marketing goal into validated tasks, budgets, and a
-              timeline—so you focus on strategy, not spreadsheet surgery.
+              timeline so you focus on strategy, not spreadsheet surgery.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <button onClick={() => navigate("/login")}
@@ -224,7 +224,7 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
               <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-sm dark:border-white/10 dark:bg-black/30">
                 <p className="text-zinc-500 dark:text-zinc-400">Assistant</p>
                 <p className="mt-2 text-zinc-800 dark:text-zinc-200">
-                  Hey—I need to launch a two-week email nurture. Can you sequence tasks and flag conflicts?
+                  Hey I need to launch a two-week email nurture. Can you sequence tasks and flag conflicts?
                 </p>
               </div>
               <div className="mt-4 flex items-start gap-3">
@@ -234,7 +234,7 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
                 <div>
                   <h3 className="font-semibold">Structured planning</h3>
                   <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                    Tasks arrive with estimates and validation signals—not vague bullet lists.
+                    Tasks arrive with estimates and validation signals not vague bullet lists.
                   </p>
                 </div>
               </div>
@@ -257,7 +257,7 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
         </section>
 
         {/* How it works */}
-        <section id="how" className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <div id="how" className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Simple. Seamless. Smart.</h2>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">Four steps from a sentence to a plan you can execute.</p>
@@ -275,7 +275,7 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
               </li>
             ))}
           </ol>
-        </section>
+        </div>
 
         {/* Security */}
         <section className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6">
@@ -327,7 +327,7 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
           <div className="overflow-hidden rounded-3xl border border-sky-500/30 bg-gradient-to-br from-sky-600/20 via-cyan-600/10 to-emerald-600/10 p-10 text-center dark:from-sky-900/40">
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Automate. Simplify. Thrive.</h2>
             <p className="mx-auto mt-4 max-w-xl text-zinc-600 dark:text-zinc-300">
-              Start with a goal—leave with a plan your team can run.
+              Start with a goal leave with a plan your team can run.
             </p>
             <button onClick={() => navigate("/login")}
               className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-sky-700 shadow-lg dark:text-sky-900">
