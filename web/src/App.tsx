@@ -347,7 +347,7 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
             Marketing Planner
           </div>
           <p className="text-center text-sm text-zinc-500">
-            © 2026 Marketing Planner. All rights reserved.
+            © copywrite.
           </p>
         </div>
       </footer>
