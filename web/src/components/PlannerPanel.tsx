@@ -36,19 +36,31 @@ export function PlannerPanel() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(
-          typeof data.detail === "string"
-            ? data.detail
-            : Array.isArray(data.detail)
-              ? data.detail.map((d: { msg?: string }) => d.msg).join(", ")
-              : "Request failed"
-        );
-        return;
-      }
+  const raw = typeof data.detail === "string"
+    ? data.detail
+    : Array.isArray(data.detail)
+      ? data.detail.map((d: { msg?: string }) => d.msg).join(", ")
+      : "Request failed";
+
+  if (raw.includes("401") || raw.includes("invalid_api_key") || raw.includes("Invalid API Key")) {
+    setError("The Groq API key is missing or invalid. Please set a valid GROQ_API_KEY in your environment.");
+  } else if (raw.includes("503") || raw.includes("GROQ_API_KEY is not set")) {
+    setError("The backend is not configured. Please add your GROQ_API_KEY to the server environment.");
+  } else if (raw.includes("500")) {
+    setError("The server encountered an error. Please try again in a moment.");
+  } else if (raw.includes("429")) {
+    setError("Too many requests. Please wait a moment and try again.");
+  } else {
+    setError("Something went wrong. Please try again.");
+  }
+  return;
+}
       setSchedule(data.schedule as PlanSchedule);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Network error");
-    } finally {
+  setError(err instanceof Error && err.message.includes("fetch")
+    ? "Unable to reach the server. Please check your connection and try again."
+    : "Something went wrong. Please try again.");
+}finally {
       setLoading(false);
     }
   }
