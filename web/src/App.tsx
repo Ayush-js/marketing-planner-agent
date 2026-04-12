@@ -69,9 +69,9 @@ function PlannerPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
 
       <header className="sticky top-0 z-50 glass-nav">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <div className="flex items-center gap-2 font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 text-white shadow-lg shadow-sky-500/25 transition duration-300 motion-safe:hover:scale-[1.03]">
-              <Bot className="h-5 w-5" />
+          <div className="flex items-center gap-2 font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 group">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 text-white shadow-lg shadow-sky-500/25 transition duration-300 group-hover:animate-float group-hover:scale-[1.08] motion-safe:hover:scale-[1.03]">
+              <Bot className="h-5 w-5 cursor-pointer" />
             </span>
             <span>Marketing Planner</span>
           </div>
@@ -126,8 +126,8 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
 
       <header className="sticky top-0 z-50 glass-nav">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <a href="/" className="flex items-center gap-2 font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 text-white shadow-lg shadow-sky-500/25 transition duration-300 motion-safe:hover:scale-[1.03]">
+          <a href="/" className="flex items-center gap-2 font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 group">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 text-white shadow-lg shadow-sky-500/25 transition duration-300 group-hover:animate-float group-hover:scale-[1.08] motion-safe:hover:scale-[1.03]">
               <Bot className="h-5 w-5" />
             </span>
             <span>Marketing Planner</span>
@@ -183,16 +183,13 @@ function LandingPage({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTh
         {/* Hero */}
         <section className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
           <div className="hero-enter mx-auto max-w-3xl text-center">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full glass-pill px-3 py-1.5 text-xs font-semibold text-sky-900 dark:text-sky-200">
-              <Zap className="h-3.5 w-3.5 shrink-0" />
-              Introducing AI marketing execution plans
-            </p>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              <span className="text-gradient">Meet your AI planner.</span>
+            
+            <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl md:text-7xl drop-shadow-sm">
+              <span className="text-gradient inline-block hover:scale-[1.02] transition-transform duration-500 ease-out">Meet your AI planner.</span>
               <br />
-              <span className="text-zinc-950 dark:text-white">Streamline your workflow</span>
+              <span className="text-zinc-950 dark:text-white inline-block hover:scale-[1.02] transition-transform duration-500 ease-out">Streamline your workflow</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg font-medium leading-relaxed text-zinc-800 dark:text-zinc-400">
+            <p className="mx-auto mt-6 max-w-2xl text-lg font-medium leading-relaxed text-zinc-800 dark:text-zinc-400 motion-safe:animate-fade-in-soft delay-150">
               An assistant that turns a single marketing goal into validated tasks, budgets, and a
               timeline so you focus on strategy, not spreadsheet surgery.
             </p>
