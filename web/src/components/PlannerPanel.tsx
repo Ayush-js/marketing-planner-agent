@@ -66,22 +66,22 @@ export function PlannerPanel() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.03] dark:shadow-2xl">
+    <div className="glass-panel relative overflow-hidden rounded-2xl p-6 shadow-2xl">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-emerald-500/5" />
       <div className="relative">
-        <div className="mb-6 flex items-center gap-2 text-sm font-medium text-sky-700 dark:text-sky-300">
-          <Sparkles className="h-4 w-4" />
+        <div className="mb-6 flex items-center gap-2 text-sm font-semibold text-sky-800 dark:text-sky-300">
+          <Sparkles className="h-4 w-4 shrink-0" />
           AI marketing planner
         </div>
         <form onSubmit={onSubmit} className="space-y-4">
-          <label className="block text-sm text-zinc-600 dark:text-zinc-400">
+          <label className="block text-sm font-semibold text-zinc-800 dark:text-zinc-400">
             Your marketing goal
             <textarea
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
               rows={3}
               placeholder='e.g. "Launch a 4-week social campaign for a new product"'
-              className="mt-2 w-full resize-y rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-base text-zinc-900 placeholder:text-zinc-500 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/20 dark:border-white/10 dark:bg-black/30 dark:text-zinc-100"
+              className="mt-2 w-full resize-y rounded-xl border border-zinc-300/70 bg-white/70 px-4 py-3 text-base font-medium text-zinc-950 placeholder:text-zinc-600 shadow-inner backdrop-blur-sm focus:border-sky-500/60 focus:outline-none focus:ring-2 focus:ring-sky-500/25 dark:border-white/12 dark:bg-black/35 dark:text-zinc-100 dark:placeholder:text-zinc-500"
               disabled={loading}
             />
           </label>
@@ -89,9 +89,10 @@ export function PlannerPanel() {
             type="submit"
             disabled={loading || !goal.trim()}
             className={clsx(
-              "inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white transition",
-              "bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-400 hover:to-cyan-400",
-              "disabled:cursor-not-allowed disabled:opacity-50"
+              "inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white transition duration-300",
+              "bg-gradient-to-r from-sky-500 to-cyan-500 shadow-lg shadow-sky-500/25 hover:from-sky-400 hover:to-cyan-400",
+              "motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99]",
+              "disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
             )}
           >
             {loading ? (
@@ -118,7 +119,7 @@ export function PlannerPanel() {
         )}
 
         {schedule && (
-          <div className="mt-8 space-y-6 border-t border-zinc-200 pt-8 dark:border-white/10">
+          <div className="mt-8 space-y-6 border-t border-zinc-300/60 pt-8 dark:border-white/10">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Stat
                 icon={<Wallet className="h-4 w-4" />}
@@ -148,17 +149,17 @@ export function PlannerPanel() {
             </div>
 
             <div>
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
+              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-zinc-800 dark:text-zinc-400">
                 Timeline
               </h3>
               <ul className="space-y-3">
                 {schedule.timeline.length === 0 && (
-                  <li className="text-sm text-zinc-500">No tasks could be scheduled.</li>
+                  <li className="text-sm font-medium text-zinc-700 dark:text-zinc-500">No tasks could be scheduled.</li>
                 )}
                 {schedule.timeline.map((t) => (
                   <li
                     key={t.order}
-                    className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-white/10 dark:bg-black/20"
+                    className="glass-card rounded-xl p-4"
                   >
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
                       <span className="font-medium text-zinc-900 dark:text-zinc-100">
@@ -168,10 +169,10 @@ export function PlannerPanel() {
                         Day {t.start_day} → {t.end_day}
                       </span>
                     </div>
-                    <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                    <p className="mt-1 text-sm font-medium leading-relaxed text-zinc-800 dark:text-zinc-400">
                       {t.description}
                     </p>
-                    <div className="mt-2 flex flex-wrap gap-3 text-xs text-zinc-500">
+                    <div className="mt-2 flex flex-wrap gap-3 text-xs font-medium text-zinc-700 dark:text-zinc-500">
                       <span>${t.estimated_cost}</span>
                       <span>{t.team_members.join(", ")}</span>
                       {t.depends_on.length > 0 && (
@@ -209,7 +210,7 @@ export function PlannerPanel() {
               </div>
             )}
 
-            <p className="text-xs text-zinc-500">
+            <p className="text-xs font-medium text-zinc-700 dark:text-zinc-500">
               Generated at {schedule.generated_at}
             </p>
           </div>
@@ -231,8 +232,8 @@ function Stat({
   small?: boolean;
 }) {
   return (
-    <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-3 dark:border-white/10 dark:bg-black/20">
-      <div className="flex items-center gap-2 text-zinc-500">
+    <div className="glass-card rounded-xl p-3">
+      <div className="flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-500">
         {icon}
         <span className="text-xs uppercase tracking-wide">{label}</span>
       </div>

@@ -28,10 +28,15 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-6px)" },
         },
+        "fade-in-soft": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         marquee: "marquee 45s linear infinite",
         float: "float 6s ease-in-out infinite",
+        "fade-in-soft": "fade-in-soft 0.8s ease-out forwards",
       },
     },
   },

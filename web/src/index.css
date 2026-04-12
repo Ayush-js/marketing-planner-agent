@@ -10,17 +10,18 @@ body {
   @apply min-h-screen antialiased;
 }
 
+/* Light mode: grid lines dark enough to read over glass surfaces */
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgb(24 24 27 / 0.35) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(24 24 27 / 0.35) 1px, transparent 1px);
+    linear-gradient(to right, rgb(39 39 42 / 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(39 39 42 / 0.14) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .dark .bg-grid {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
 }
 
 .text-gradient {
@@ -28,5 +29,221 @@ body {
 }
 
 html:not(.dark) .text-gradient {
-  @apply from-sky-600 via-cyan-600 to-emerald-600;
+  @apply from-sky-700 via-cyan-700 to-emerald-700;
+}
+
+/* Glass surfaces (plain CSS — reliable in light + dark) */
+.glass-nav {
+  border-bottom: 1px solid rgb(212 212 216 / 0.45);
+  background: rgb(255 255 255 / 0.7);
+  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.65);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+}
+
+.dark .glass-nav {
+  border-bottom-color: rgb(255 255 255 / 0.1);
+  background: rgb(9 9 11 / 0.55);
+  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.06);
+}
+
+.glass-pill {
+  border: 1px solid rgb(14 165 233 / 0.35);
+  background: rgb(14 165 233 / 0.2);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+}
+
+.dark .glass-pill {
+  border-color: rgb(56 189 248 / 0.25);
+  background: rgb(14 165 233 / 0.1);
+}
+
+.glass-panel {
+  border: 1px solid rgb(212 212 216 / 0.5);
+  background: rgb(255 255 255 / 0.55);
+  box-shadow: 0 10px 40px -10px rgb(24 24 27 / 0.12);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+}
+
+.dark .glass-panel {
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: 0 10px 40px -10px rgb(0 0 0 / 0.45);
+}
+
+.glass-card {
+  border: 1px solid rgb(212 212 216 / 0.45);
+  background: rgb(255 255 255 / 0.5);
+  box-shadow: 0 4px 24px -8px rgb(24 24 27 / 0.1);
+  backdrop-filter: blur(16px) saturate(1.45);
+  -webkit-backdrop-filter: blur(16px) saturate(1.45);
+}
+
+.dark .glass-card {
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.05);
+  box-shadow: 0 4px 24px -8px rgb(0 0 0 / 0.35);
+}
+
+.glass-card-hover {
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-card-hover {
+    transition: none;
+  }
+}
+
+.glass-card-hover:hover {
+  border-color: rgb(161 161 170 / 0.6);
+  background: rgb(255 255 255 / 0.65);
+  box-shadow: 0 12px 40px -12px rgb(24 24 27 / 0.14);
+}
+
+.dark .glass-card-hover:hover {
+  border-color: rgb(255 255 255 / 0.15);
+  background: rgb(255 255 255 / 0.09);
+  box-shadow: 0 12px 40px -12px rgb(0 0 0 / 0.55);
+}
+
+.glass-btn-ghost {
+  border: 1px solid rgb(113 113 122 / 0.55);
+  background: rgb(255 255 255 / 0.45);
+  color: rgb(24 24 27);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  backdrop-filter: blur(12px) saturate(1.45);
+  -webkit-backdrop-filter: blur(12px) saturate(1.45);
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.glass-btn-ghost:hover {
+  border-color: rgb(82 82 91 / 0.6);
+  background: rgb(255 255 255 / 0.7);
+  box-shadow: 0 4px 20px -6px rgb(24 24 27 / 0.12);
+}
+
+.dark .glass-btn-ghost {
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.08);
+  color: rgb(244 244 245);
+}
+
+.dark .glass-btn-ghost:hover {
+  border-color: rgb(255 255 255 / 0.2);
+  background: rgb(255 255 255 / 0.12);
+}
+
+.glass-icon-btn {
+  border-radius: 0.75rem;
+  border: 1px solid rgb(113 113 122 / 0.5);
+  background: rgb(255 255 255 / 0.5);
+  padding: 0.5rem;
+  color: rgb(39 39 42);
+  backdrop-filter: blur(12px) saturate(1.45);
+  -webkit-backdrop-filter: blur(12px) saturate(1.45);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.glass-icon-btn:hover {
+  border-color: rgb(82 82 91 / 0.6);
+  background: rgb(255 255 255 / 0.75);
+  color: rgb(9 9 11);
+}
+
+.dark .glass-icon-btn {
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.08);
+  color: rgb(228 228 231);
+}
+
+.dark .glass-icon-btn:hover {
+  border-color: rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.14);
+  color: rgb(255 255 255);
+}
+
+.glass-mobile-nav {
+  border-top: 1px solid rgb(212 212 216 / 0.5);
+  background: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.dark .glass-mobile-nav {
+  border-top-color: rgb(255 255 255 / 0.1);
+  background: rgb(9 9 11 / 0.75);
+}
+
+/* Staggered hero entrance (no JS) */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gentle-glow {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+.hero-enter > * {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-enter > * {
+    animation: fade-in-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .hero-enter > *:nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .hero-enter > *:nth-child(2) {
+    animation-delay: 95ms;
+  }
+  .hero-enter > *:nth-child(3) {
+    animation-delay: 175ms;
+  }
+  .hero-enter > *:nth-child(4) {
+    animation-delay: 245ms;
+  }
+
+  .hero-glow-motion {
+    animation: gentle-glow 14s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter > * {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+  .hero-glow-motion {
+    animation: none;
+  }
 }

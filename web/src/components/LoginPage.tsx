@@ -98,12 +98,12 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
 
   return (
     <div className="relative min-h-screen bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
-      <div className="pointer-events-none fixed inset-0 bg-hero-glow opacity-90 dark:opacity-100" />
+      <div className="pointer-events-none fixed inset-0 bg-hero-glow opacity-90 hero-glow-motion dark:opacity-100" />
       <div className="pointer-events-none fixed inset-0 bg-grid" />
 
-      <header className="relative z-10 flex items-center justify-between px-6 py-4">
-        <a href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 text-white shadow-lg shadow-sky-500/25">
+      <header className="relative z-10 flex items-center justify-between border-b border-zinc-300/40 bg-white/65 px-6 py-4 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/50">
+        <a href="/" className="flex items-center gap-2 font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 text-white shadow-lg shadow-sky-500/25 transition duration-300 motion-safe:hover:scale-[1.03]">
             <Bot className="h-5 w-5" />
           </span>
           <span>Marketing Planner</span>
@@ -111,24 +111,25 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
         <button
           type="button"
           onClick={toggleTheme}
-          className="rounded-lg border border-zinc-200 p-2 text-zinc-600 hover:bg-zinc-100 dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/10"
+          className="glass-icon-btn"
+          aria-label="Toggle theme"
         >
           {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </button>
       </header>
 
       <div className="relative z-10 flex min-h-[calc(100vh-80px)] items-center justify-center px-4">
-        <div className="w-full max-w-md">
-          <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-xl dark:border-white/10 dark:bg-white/[0.03]">
+        <div className="w-full max-w-md motion-safe:animate-fade-in-soft">
+          <div className="glass-panel rounded-2xl p-8 shadow-2xl">
 
             <div className="mb-6 text-center">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-cyan-600 text-white shadow-lg shadow-sky-500/25">
                 <Bot className="h-6 w-6" />
               </span>
-              <h1 className="mt-4 text-2xl font-bold tracking-tight">
+              <h1 className="mt-4 text-2xl font-bold tracking-tight text-zinc-950 dark:text-white">
                 {mode === "login" ? "Welcome back" : "Create an account"}
               </h1>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="mt-1 text-sm font-medium text-zinc-800 dark:text-zinc-400">
                 {mode === "login"
                   ? "Sign in to access your marketing planner"
                   : "Sign up to get started for free"}
@@ -140,7 +141,7 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
               type="button"
               onClick={() => handleProviderSignIn("google")}
               disabled={googleLoading || githubLoading}
-              className="mb-3 flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-300 dark:hover:bg-white/10"
+              className="glass-btn-ghost mb-3 flex w-full items-center justify-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
             >
               {googleLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -160,7 +161,7 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
               type="button"
               onClick={() => handleProviderSignIn("github")}
               disabled={googleLoading || githubLoading}
-              className="mb-4 flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-300 dark:hover:bg-white/10"
+              className="glass-btn-ghost mb-4 flex w-full items-center justify-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
             >
               {githubLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -174,11 +175,11 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
 
             <div className="mb-4 flex items-center gap-3">
               <div className="h-px flex-1 bg-zinc-200 dark:bg-white/10" />
-              <span className="text-xs text-zinc-400">or</span>
+              <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-400">or</span>
               <div className="h-px flex-1 bg-zinc-200 dark:bg-white/10" />
             </div>
 
-            <div className="mb-6 flex rounded-xl border border-zinc-200 p-1 dark:border-white/10">
+            <div className="mb-6 flex rounded-xl border border-zinc-300/50 bg-white/40 p-1 backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.06]">
               <button
                 type="button"
                 onClick={() => { setMode("login"); setError(null); setSuccess(null); }}
@@ -186,7 +187,7 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
                   "flex-1 rounded-lg py-2 text-sm font-medium transition",
                   mode === "login"
                     ? "bg-gradient-to-r from-sky-500 to-cyan-500 text-white shadow-sm"
-                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                    : "font-medium text-zinc-700 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white"
                 )}
               >
                 Log in
@@ -198,7 +199,7 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
                   "flex-1 rounded-lg py-2 text-sm font-medium transition",
                   mode === "signup"
                     ? "bg-gradient-to-r from-sky-500 to-cyan-500 text-white shadow-sm"
-                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                    : "font-medium text-zinc-700 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white"
                 )}
               >
                 Sign up
@@ -216,7 +217,7 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/20 dark:border-white/10 dark:bg-black/30 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-300/70 bg-white/70 px-4 py-2.5 text-sm font-medium text-zinc-950 placeholder:text-zinc-600 backdrop-blur-sm focus:border-sky-500/60 focus:outline-none focus:ring-2 focus:ring-sky-500/25 dark:border-white/12 dark:bg-black/35 dark:text-zinc-100 dark:placeholder:text-zinc-500"
                 />
               </div>
 
@@ -231,12 +232,12 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     required
-                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-2.5 pr-10 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/20 dark:border-white/10 dark:bg-black/30 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-300/70 bg-white/70 px-4 py-2.5 pr-10 text-sm font-medium text-zinc-950 placeholder:text-zinc-600 backdrop-blur-sm focus:border-sky-500/60 focus:outline-none focus:ring-2 focus:ring-sky-500/25 dark:border-white/12 dark:bg-black/35 dark:text-zinc-100 dark:placeholder:text-zinc-500"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword((s) => !s)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
@@ -254,7 +255,7 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
                     required
-                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/20 dark:border-white/10 dark:bg-black/30 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-300/70 bg-white/70 px-4 py-2.5 text-sm font-medium text-zinc-950 placeholder:text-zinc-600 backdrop-blur-sm focus:border-sky-500/60 focus:outline-none focus:ring-2 focus:ring-sky-500/25 dark:border-white/12 dark:bg-black/35 dark:text-zinc-100 dark:placeholder:text-zinc-500"
                   />
                 </div>
               )}
@@ -274,7 +275,7 @@ export function LoginPage({ theme, toggleTheme }: LoginPageProps) {
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 px-5 py-3 text-sm font-semibold text-white shadow-md shadow-sky-500/20 transition hover:from-sky-400 hover:to-cyan-400 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition duration-300 hover:from-sky-400 hover:to-cyan-400 motion-safe:hover:scale-[1.01] motion-safe:active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
               >
                 {loading ? (
                   <><Loader2 className="h-4 w-4 animate-spin" />
