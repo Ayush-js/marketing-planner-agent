@@ -17,8 +17,7 @@ if str(ROOT) not in sys.path:
 
 load_dotenv(ROOT / ".env")
 
-from agents.planner_agent import run_planner_agent
-from utils.scheduler import generate_schedule
+from agents.crew import run_crew
 
 app = FastAPI(title="Marketing Planner API", version="1.0.0")
 
@@ -54,8 +53,7 @@ def create_plan(body: PlanRequest):
             detail="GROQ_API_KEY is not set. Add it to your .env file.",
         )
     try:
-        validated = run_planner_agent(body.goal.strip(), verbose=False)
-        schedule = generate_schedule(validated, verbose=False)
+        schedule = run_crew(body.goal.strip(), verbose=False)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
     return {"schedule": schedule}
